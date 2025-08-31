@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sign in - Email</title>
+<style>
+  body { font-family: Arial, sans-serif; background: white; padding: 20px; max-width: 400px; margin: auto; }
+  .container { margin-top: 50px; }
+  label, input { display: block; width: 100%; margin-bottom: 10px; }
+  input { padding: 10px; font-size: 16px; }
+  button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h2>Sign in</h2>
+  <label for="email">Email or phone</label>
+  <input id="email" type="email" placeholder="Email or phone" required />
+  <button id="nextBtn">Next</button>
+</div>
+
+<script>
+  // Load saved email if exists
+  const emailInput = document.getElementById('email');
+  const savedEmail = localStorage.getItem('email');
+  if (savedEmail) {
+    emailInput.value = savedEmail;
+  }
+
+  document.getElementById('nextBtn').addEventListener('click', () => {
+    if (!emailInput.value) {
+      alert('Please enter your email or phone.');
+      return;
+    }
+    // Save email in localStorage
+    localStorage.setItem('email', emailInput.value);
+    // Go to password page
+    window.location.href = 'password.html';
+  });
+</script>
+</body>
+</html>
